@@ -5,6 +5,7 @@
 package edu.stuy.commands;
 
 import edu.stuy.Devmode;
+import crio.hardware.CRIO;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -16,18 +17,20 @@ import static org.junit.Assert.*;
  *
  * @author admin
  */
-public class DriveForwardSecondsTest {
+public class DriveManualJoystickControlTest {
     
-    public DriveForwardSecondsTest() {
+    public DriveManualJoystickControlTest() {
     }
 
     @BeforeClass
     public static void setUpClass() throws Exception {
+        CRIO.init();
         Devmode.DEV_MODE = true;
     }
 
     @AfterClass
     public static void tearDownClass() throws Exception {
+        CRIO.end();
     }
     
     @Before
@@ -44,10 +47,8 @@ public class DriveForwardSecondsTest {
     // public void hello() {}
     
     @Test
-    public void testDriveForwardSeconds() {
+    public void testDriveManualJoystickControl() {
         DriveManualJoystickControl cmd = new DriveManualJoystickControl();
         assertFalse(cmd.isFinished());
-        
-        
     }
 }
