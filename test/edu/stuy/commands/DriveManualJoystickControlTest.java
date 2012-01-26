@@ -4,14 +4,13 @@
  */
 package edu.stuy.commands;
 
-import edu.stuy.Devmode;
-import crio.hardware.CRIO;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import edu.stuy.InitTests;
 
 /**
  *
@@ -24,13 +23,12 @@ public class DriveManualJoystickControlTest {
 
     @BeforeClass
     public static void setUpClass() throws Exception {
-        CRIO.init();
-        Devmode.DEV_MODE = true;
+        InitTests.setUpTests();
     }
 
     @AfterClass
     public static void tearDownClass() throws Exception {
-        CRIO.end();
+        InitTests.tearDownTests();
     }
     
     @Before
