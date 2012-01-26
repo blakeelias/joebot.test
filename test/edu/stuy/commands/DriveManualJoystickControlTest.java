@@ -10,6 +10,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import java.io.*;
 
 import edu.stuy.*;
 import edu.wpi.first.wpilibj.*;
@@ -58,18 +59,21 @@ public class DriveManualJoystickControlTest {
     // public void hello() {}
     
     @Test
-    public void testDriveManualJoystickControl() {
+    public void testDriveForward() {
         DriveManualJoystickControl cmd = new DriveManualJoystickControl();
         cmd.initialize();
         double startTime = Timer.getFPGATimestamp();
-        while (Timer.getFPGATimestamp() - startTime < 5) {
+        while (Timer.getFPGATimestamp() - startTime < 1) {
             cmd.execute();
         }
         cmd.end();
 
         // TODO: get encoder readings from drivetrain object
-        System.out.println(CRIO.client.getdata()[1] + " " + CRIO.client.getdata()[2]);
-        assertTrue(CRIO.client.getdata()[1] > 0);
-        assertTrue(CRIO.client.getdata()[2] > 0);
+        double leftDist = CRIO.client.getdata()[1];
+        double rightDist = CRIO.client.getdata()[2];
+        System.out.println(leftDist + " " + rightDist);
+        assertTrue(leftDist > 0);
+        assertTrue(rightDist > 0);
+        assertEquals(leftDist, rightDist, 2.0);
     }
 }
